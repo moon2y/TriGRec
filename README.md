@@ -7,6 +7,7 @@ TriGRec is a two-stage recommendation pipeline:
 -------------------------------------------------------------------------------
 ## Repository Structure
 -------------------------------------------------------------------------------
+'''
 TriGRec/
 ├─ data/                                  # your pickled datasets
 ├─ state_dict/
@@ -23,19 +24,19 @@ TriGRec/
    ├─ data.py                             # BERTRecDataSet, InferenceDataset
    ├─ model.py                            # BERT4Rec, GRL, Discriminator, losses
    └─ config.py                           # TRAIN/INFER settings + --override
-
+'''
 
 -------------------------------------------------------------------------------
 ## Data Format
 -------------------------------------------------------------------------------
 - Pickled dicts: user_id -> [item_id, item_id, ...]
 - Example files (used by defaults):
-   -data/food_all.pkl
-   -data/kitchen_train.pkl
-   -data/cross_k_train.pkl
-   -data/food_train.pkl
-   -data/kitchen_all.pkl
-   -data/cross_f_train.pkl
+   - data/food_all.pkl
+   - data/kitchen_train.pkl
+   - data/cross_k_train.pkl
+   - data/food_train.pkl
+   - data/kitchen_all.pkl
+   - data/cross_f_train.pkl
 
 
 -------------------------------------------------------------------------------
