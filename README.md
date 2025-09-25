@@ -8,21 +8,21 @@ TriGRec is a two-stage recommendation pipeline:
 ## Repository Structure
 -------------------------------------------------------------------------------
 TriGRec/
-  data/                                  (your pickled datasets)
-  state_dict/
-    rep/                                 (user-representation checkpoints)
-    rec/                                 (recommender checkpoints)
-  recommendation_model/
-    train_eval.py                        (entry; uses config.py)
-    data.py                              (MakeSequenceDataSet, BERTRecDataSet)
-    model.py                             (BERT4Rec & CrossAttention gating)
-    config.py                            (BASE settings + --override parser)
-  user_representation_module/
-    train.py                             (entry; uses config.py)
-    inference.py                         (embedding export; imports BERT4Rec)
-    data.py                              (BERTRecDataSet, InferenceDataset)
-    model.py                             (BERT4Rec, GRL, Discriminator, losses)
-    config.py                            (TRAIN/INFER settings + --override)
+├─ data/                                  # your pickled datasets
+├─ state_dict/
+│  ├─ rep/                                # user-representation checkpoints
+│  └─ rec/                                # recommender checkpoints
+├─ recommendation_model/
+│  ├─ train_eval.py                       # entry (uses config.py)
+│  ├─ data.py                             # MakeSequenceDataSet, BERTRecDataSet
+│  ├─ model.py                            # BERT4Rec & CrossAttention gating
+│  └─ config.py                           # BASE settings + --override parser
+└─ user_representation_module/
+   ├─ train.py                            # entry (uses config.py)
+   ├─ inference.py                        # embedding export (imports BERT4Rec)
+   ├─ data.py                             # BERTRecDataSet, InferenceDataset
+   ├─ model.py                            # BERT4Rec, GRL, Discriminator, losses
+   └─ config.py                           # TRAIN/INFER settings + --override
 
 
 -------------------------------------------------------------------------------
@@ -30,12 +30,12 @@ TriGRec/
 -------------------------------------------------------------------------------
 - Pickled dicts: user_id -> [item_id, item_id, ...]
 - Example files (used by defaults):
-  data/food_all.pkl
-  data/kitchen_train.pkl
-  data/cross_k_train.pkl
-  data/food_train.pkl
-  data/kitchen_all.pkl
-  data/cross_f_train.pkl
+   -data/food_all.pkl
+   -data/kitchen_train.pkl
+   -data/cross_k_train.pkl
+   -data/food_train.pkl
+   -data/kitchen_all.pkl
+   -data/cross_f_train.pkl
 
 
 -------------------------------------------------------------------------------
