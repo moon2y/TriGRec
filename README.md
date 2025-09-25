@@ -7,7 +7,7 @@ TriGRec is a two-stage recommendation pipeline:
 -------------------------------------------------------------------------------
 ## Repository Structure
 -------------------------------------------------------------------------------
-'''
+
 TriGRec/
 ├─ data/                                  # your pickled datasets
 ├─ state_dict/
@@ -24,7 +24,7 @@ TriGRec/
    ├─ data.py                             # BERTRecDataSet, InferenceDataset
    ├─ model.py                            # BERT4Rec, GRL, Discriminator, losses
    └─ config.py                           # TRAIN/INFER settings + --override
-'''
+
 
 -------------------------------------------------------------------------------
 ## Data Format
