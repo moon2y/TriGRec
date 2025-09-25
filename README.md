@@ -1,11 +1,11 @@
-TriGRec
+# TriGRec
 
 TriGRec is a two-stage recommendation pipeline:
 1) Learn user representations (specific/common/cross) from multi-domain sequences,
 2) Train/evaluate the recommender that consumes those embeddings.
 
 -------------------------------------------------------------------------------
-Repository Structure
+## Repository Structure
 -------------------------------------------------------------------------------
 TriGRec/
   data/                                  (your pickled datasets)
@@ -26,7 +26,7 @@ TriGRec/
 
 
 -------------------------------------------------------------------------------
-Data Format
+## Data Format
 -------------------------------------------------------------------------------
 - Pickled dicts: user_id -> [item_id, item_id, ...]
 - Example files (used by defaults):
@@ -39,23 +39,31 @@ Data Format
 
 
 -------------------------------------------------------------------------------
-Quickstart (run from repository root with module mode)
+## Quickstart (run from repository root with module mode)
 -------------------------------------------------------------------------------
 1) User Representation — Training
    Learns Specific/Common/Cross encoders and saves to state_dict/rep/...
 
-   python -m user_representation_module.train
+```bash
+python -m user_representation_module.train
+```
 
    Tweak a few settings on the fly:
-   python -m user_representation_module.train --override "device=cuda:0,lr=0.0005,batch_size=64,num_epochs=50"
+```bash
+python -m user_representation_module.train --override "device=cuda:0,lr=0.0005,batch_size=64,num_epochs=50"
+```
 
 2) User Representation — Embedding Export
    Loads trained encoders and exports spe/cross embeddings to .pkl and .npy.
 
-   python -m user_representation_module.inference
+```bash
+python -m user_representation_module.inference
+```
 
    Choose epoch and domain for 'specific' embeddings:
-   python -m user_representation_module.inference --override "EPOCH_TO_LOAD=80,SPE_DOMAIN=B"
+```bash
+python -m user_representation_module.inference --override "EPOCH_TO_LOAD=80,SPE_DOMAIN=B"
+```
 
    Outputs:
    user_representation_module/embeddings/<domain>/
@@ -65,16 +73,20 @@ Quickstart (run from repository root with module mode)
 3) Recommender — Train/Eval
    Uses sequences + exported embeddings to train BERT4Rec with cross-attention.
 
-   python -m recommendation_model.train_eval
+```bash
+python -m recommendation_model.train_eval
+```
 
    Example overrides:
-   python -m recommendation_model.train_eval --override "device=cuda:0,batch_size=1024,spe_emb_path=user_representation_module/embeddings/food/spe_emb_ep100_A.npy,cross_emb_path=user_representation_module/embeddings/food/cross_emb_ep100_A.npy"
+```bash
+python -m recommendation_model.train_eval --override "device=cuda:0,batch_size=1024,spe_emb_path=user_representation_module/embeddings/food/spe_emb_ep100_A.npy,cross_emb_path=user_representation_module/embeddings/food/cross_emb_ep100_A.npy"
+```
 
    Checkpoint:
    state_dict/rec/food/maxlen10.pt
 
 -------------------------------------------------------------------------------
-Configuration
+## Configuration
 -------------------------------------------------------------------------------
 Each module maintains defaults in config.py:
 - user_representation_module/config.py:
@@ -83,12 +95,14 @@ Each module maintains defaults in config.py:
   BASE (for train/eval)
 
 Override any key at runtime:
-  python -m user_representation_module.train --override "device=cuda:0,lr=0.0005"
-  python -m user_representation_module.inference --override "EPOCH_TO_LOAD=100,SPE_DOMAIN=A"
-  python -m recommendation_model.train_eval --override "seed=2025,batch_size=1024"
+```bash
+python -m user_representation_module.train --override "device=cuda:0,lr=0.0005"
+python -m user_representation_module.inference --override "EPOCH_TO_LOAD=100,SPE_DOMAIN=A"
+python -m recommendation_model.train_eval --override "seed=2025,batch_size=1024"
+```
 
 -------------------------------------------------------------------------------
-End-to-End Pipeline
+## End-to-End Pipeline
 -------------------------------------------------------------------------------
 1. Train user encoders (user_representation_module/train.py)
    - Learns specific/common/cross encoders (plus prediction/discriminator heads).
