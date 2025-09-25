@@ -84,9 +84,6 @@ python -m recommendation_model.train_eval
 python -m recommendation_model.train_eval --override "device=cuda:0,batch_size=1024,spe_emb_path=user_representation_module/embeddings/food/spe_emb_ep100_A.npy,cross_emb_path=user_representation_module/embeddings/food/cross_emb_ep100_A.npy"
 ```
 
-   Checkpoint:
-   state_dict/rec/food/maxlen10.pt
-
 -------------------------------------------------------------------------------
 ## Configuration
 -------------------------------------------------------------------------------
